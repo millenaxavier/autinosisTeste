@@ -23,11 +23,6 @@ const INITIAL_FORM_STATE: FormCriancaData = {
   A10: "",
 };
 
-const EXTRA_QUESTIONS = {
-  extra1: "",
-  extra2: "",
-}
-
 const FormCrianca: React.FC = () => {
   const [formData, setFormData] = useState<FormCriancaData>(INITIAL_FORM_STATE);
   const [isSubmitting, setIsSubmitting] = useState(false);

@@ -123,7 +123,7 @@ const FormTesting = () => {
                 </select>
             </div>
             <div className='my-10 flex-col'>
-                <p className='desc'>Acha fácil 'ler nas entrelinhas' quando alguém está falando contigo?</p>
+                <p className='desc'>Acha fácil &apos;ler nas entrelinhas&apos; quando alguém está falando contigo?</p>
                 <select className='select_form' value={formData.A5} onChange={(e) => handleInputChange('A5', e.target.value)}>
                     <option value="">Selecione uma opção</option>
                     <option value={1}>Concordo totalmente</option>
