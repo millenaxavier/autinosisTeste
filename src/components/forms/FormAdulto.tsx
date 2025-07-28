@@ -36,6 +36,7 @@ const FormTesting: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [resposta, setResposta] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [cidade, setCidade] = React.useState("");
 
   const handleInputChange = (name: string, value: string | number) => {
     setFormData((prev) => ({
@@ -86,6 +87,7 @@ const FormTesting: React.FC = () => {
   };
 
   if (resposta !== null) {
+    const linkDoctoralia = `https://www.doctoralia.com.br/resultados?search%5Bspecializations%5D%5B%5D=autismo&search%5Blocations%5D%5B%5D=${encodeURIComponent(cidade)}`;
     return (
       <div className="my-10 p-6 bg-white rounded-lg shadow-md text-center">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">
@@ -102,6 +104,28 @@ const FormTesting: React.FC = () => {
             Nosso modelo identificou que é improvável que você possua o TEA com
             base nas informações fornecidas.
           </p>
+        )}
+        {resposta > 0 && (
+          <div className="mb-6">
+            <label className="block mb-2 text-gray-700">Digite sua cidade para buscar profissionais especialistas em autismo:</label>
+            <input
+              type="text"
+              value={cidade}
+              onChange={e => setCidade(e.target.value)}
+              placeholder="Digite sua cidade"
+              className="border rounded px-3 py-2 mb-2 w-full"
+            />
+            {cidade && (
+              <a
+                href={linkDoctoralia}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors mt-2"
+              >
+                Ver profissionais especialistas em autismo perto de {cidade}
+              </a>
+            )}
+          </div>
         )}
         <button
           onClick={resetForm}

@@ -23,7 +23,7 @@ export default function LoginPage() {
         signInWithEmailLink(AUTH, email, window.location.href)
           .then(() => {
             window.localStorage.removeItem("emailForSignIn");
-            router.push("/"); // Redireciona para a home após login
+            router.push("/test"); // Redireciona para /test após login
           })
           .catch((error) => {
             alert(`Erro ao autenticar: ${error.message}`);

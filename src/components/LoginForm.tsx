@@ -3,8 +3,10 @@
 import { signInWithPopup, GoogleAuthProvider, sendSignInLinkToEmail } from "firebase/auth";
 import React, { useState } from "react";
 import { AUTH } from "../firebase/firebaseInit";
+import { useRouter } from "next/navigation";
 
 const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,6 +30,7 @@ const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
       const result = await signInWithPopup(AUTH, provider);
       console.log('Login successful:', result.user.email);
       if (onLoginSuccess) onLoginSuccess();
+      else router.push("/test");
     } catch (error: any) {
       console.error('Login error:', error);
       setError(`Erro ao fazer login com Google: ${error.message || 'Erro desconhecido'}`);
