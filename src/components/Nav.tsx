@@ -9,11 +9,13 @@ import { HiMenu, HiX } from "react-icons/hi";
 import IniciarTriagemButton from "@/components/IniciarTriagemButton";
 import { AUTH } from "@/firebase/firebaseInit";
 import { useAuth } from "./AuthProvider";
+import { useRouter } from "next/navigation";
 
 const NavBar = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
+  const router = useRouter();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -35,6 +37,7 @@ const NavBar = () => {
       if (AUTH) {
         await signOut(AUTH);
         console.log('Logout successful');
+        router.push("/");
       }
     } catch (error) {
       console.error('Logout error:', error);
@@ -97,8 +100,7 @@ const NavBar = () => {
             </span>
             <button
               onClick={handleLogout}
-              className="px-4 py-2 bg-gradient-to-r from-orange-500 to-pink-600 
-              text-white rounded-lg transition hover:bg-opacity-90 text-sm"
+              className="px-4 py-2 bg-white text-black rounded-lg transition hover:bg-gray-200 text-sm"
             >
               Sair
             </button>
@@ -160,8 +162,7 @@ const NavBar = () => {
                       setToggleDropdown(false);
                       await handleLogout();
                     }}
-                    className="mt-2 w-full text-left px-4 py-2 bg-gradient-to-r 
-                    from-orange-500 to-pink-600 text-white rounded transition hover:bg-opacity-90"
+                    className="mt-2 w-full text-left px-4 py-2 bg-white text-black rounded transition hover:bg-gray-200"
                   >
                     Sair
                   </button>

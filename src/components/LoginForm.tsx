@@ -25,9 +25,10 @@ const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
     try {
       const provider = new GoogleAuthProvider();
       console.log('Google provider created, attempting sign in...');
-      const result = await signInWithPopup(AUTH, provider);
-      console.log('Login successful:', result.user.email);
-      if (onLoginSuccess) onLoginSuccess();
+      // Trocar signInWithPopup por signInWithRedirect
+      await import("firebase/auth").then(({ signInWithRedirect }) => signInWithRedirect(AUTH, provider));
+      // Não há resultado imediato, o usuário será redirecionado
+      // if (onLoginSuccess) onLoginSuccess(); // Não chamar aqui
     } catch (error: any) {
       console.error('Login error:', error);
       setError(`Erro ao fazer login com Google: ${error.message || 'Erro desconhecido'}`);
