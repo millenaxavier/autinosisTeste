@@ -120,7 +120,9 @@ const NavBar = () => {
                 type="button"
                 onClick={async () => {
                   setToggleDropdown(false);
-                  await signOut(AUTH);
+                  if (AUTH) {
+                    await signOut(AUTH);
+                  }
                 }}
                 className="mt-2 w-full text-left px-4 py-2 bg-gradient-to-r 
                 from-orange-500 to-pink-600 text-white rounded transition hover:bg-opacity-90"

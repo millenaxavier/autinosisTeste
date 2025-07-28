@@ -18,6 +18,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Only set up auth listener if Firebase is initialized
+    if (!AUTH) {
+      setLoading(false);
+      return undefined;
+    }
+
     const unsubscribe = onAuthStateChanged(AUTH, (firebaseUser) => {
       setUser(firebaseUser);
       setLoading(false);

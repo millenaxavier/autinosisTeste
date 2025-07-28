@@ -11,6 +11,11 @@ const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
   const [emailSent, setEmailSent] = useState(false);
 
   const handleGoogleLogin = async () => {
+    if (!AUTH) {
+      setError("Firebase não está configurado");
+      return;
+    }
+
     setError("");
     setLoading(true);
     try {
@@ -26,6 +31,11 @@ const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
 
   const handleEmailLinkLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!AUTH) {
+      setError("Firebase não está configurado");
+      return;
+    }
+
     setError("");
     setLoading(true);
     try {
