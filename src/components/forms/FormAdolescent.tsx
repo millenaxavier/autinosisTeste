@@ -4,6 +4,7 @@
 import React, { useState } from "react";
 import FormInput from "@/components/forms/GeneralForm";
 import type { FormAdolescentData } from "@/components/forms/types";
+import removeAccents from "remove-accents";
 
 const INITIAL_FORM_STATE: FormAdolescentData = {
   Ethnicity: "",
@@ -34,6 +35,9 @@ const FormAdolescent: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [resposta, setResposta] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [cidade, setCidade] = React.useState("");
+  const cidadeUrl = removeAccents(cidade.trim().toLowerCase().replace(/\s+/g, "-"));
+  const linkDoctoralia = `https://www.doctoralia.com.br/doencas/autismo/${cidadeUrl}`;
 
   const handleInputChange = (name: string, value: string | number) => {
     setFormData((prev) => ({
@@ -94,6 +98,33 @@ const FormAdolescent: React.FC = () => {
           Este resultado indica a probabilidade de presença de características
           associadas ao TEA com base nas informações fornecidas.
         </p>
+        {resposta > 0 && (
+          <div className="mb-6">
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Encontre profissionais especialistas em autismo
+              </label>
+              <input
+                type="text"
+                value={cidade}
+                onChange={e => setCidade(e.target.value)}
+                placeholder="Digite sua cidade"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+            
+            {cidade && (
+              <a
+                href={linkDoctoralia}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors"
+              >
+                Buscar profissionais em {cidade}
+              </a>
+            )}
+          </div>
+        )}
         <button
           onClick={resetForm}
           className="px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors"

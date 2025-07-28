@@ -100,7 +100,7 @@ const NavBar = () => {
             </span>
             <button
               onClick={handleLogout}
-              className="px-4 py-2 bg-white text-black rounded-lg transition hover:bg-gray-200 text-sm"
+              className="px-4 py-2 bg-white text-blue-600 rounded-lg border border-blue-600 transition hover:bg-blue-50 text-sm"
             >
               Sair
             </button>
@@ -162,7 +162,7 @@ const NavBar = () => {
                       setToggleDropdown(false);
                       await handleLogout();
                     }}
-                    className="mt-2 w-full text-left px-4 py-2 bg-white text-black rounded transition hover:bg-gray-200"
+                    className="mt-2 w-full text-left px-4 py-2 bg-white text-blue-600 border border-blue-600 rounded transition hover:bg-blue-50"
                   >
                     Sair
                   </button>

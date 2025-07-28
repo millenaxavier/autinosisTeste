@@ -3,8 +3,10 @@
 import { signInWithPopup, GoogleAuthProvider, sendSignInLinkToEmail } from "firebase/auth";
 import React, { useState } from "react";
 import { AUTH } from "../firebase/firebaseInit";
+import { useRouter } from "next/navigation";
 
 const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,10 +27,10 @@ const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
     try {
       const provider = new GoogleAuthProvider();
       console.log('Google provider created, attempting sign in...');
-      // Trocar signInWithPopup por signInWithRedirect
-      await import("firebase/auth").then(({ signInWithRedirect }) => signInWithRedirect(AUTH, provider));
-      // Não há resultado imediato, o usuário será redirecionado
-      // if (onLoginSuccess) onLoginSuccess(); // Não chamar aqui
+      const result = await signInWithPopup(AUTH, provider);
+      console.log('Login successful:', result.user.email);
+      if (onLoginSuccess) onLoginSuccess();
+      else router.push("/test");
     } catch (error: any) {
       console.error('Login error:', error);
       setError(`Erro ao fazer login com Google: ${error.message || 'Erro desconhecido'}`);
@@ -48,7 +50,7 @@ const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
     setLoading(true);
     try {
       const actionCodeSettings = {
-        url: `${window.location.origin}/`, // Corrigido para redirecionar para a home
+        url: `${window.location.origin}/test`, // Redireciona para /test
         handleCodeInApp: true,
       };
       await sendSignInLinkToEmail(AUTH, email, actionCodeSettings);
