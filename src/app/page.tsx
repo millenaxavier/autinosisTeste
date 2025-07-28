@@ -7,9 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { FC } from "react";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useAuth } from "@/components/AuthProvider";
-import LoginForm from "@/components/LoginForm";
 import IniciarTriagemButton from "@/components/IniciarTriagemButton";
 
 // Custom hook for animation on scroll

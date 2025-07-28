@@ -27,11 +27,6 @@ const INITIAL_FORM_STATE: FormAdolescentData = {
   Email: "",
 };
 
-const EXTRA_QUESTIONS = {
-  extra1: "",
-  extra2: "",
-}
-
 const FormAdolescent: React.FC = () => {
   const [formData, setFormData] = useState<FormAdolescentData>(
     INITIAL_FORM_STATE

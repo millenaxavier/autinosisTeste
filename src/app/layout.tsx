@@ -1,6 +1,6 @@
 import "./globals.css";
-import Nav from "@/components/Nav";
 import { AuthProvider } from "@/components/AuthProvider";
+import Nav from "@/components/Nav";
 
 export const metadata = {
   title: "Autinosis",

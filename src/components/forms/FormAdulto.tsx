@@ -27,6 +27,8 @@ const INITIAL_FORM_STATE: FormAdultData = {
   Email: "",
 };
 
+const THRESHOLD_PERCENTAGE = 50;
+
 const FormTesting: React.FC = () => {
   const [formData, setFormData] = useState<FormAdultData>(
     INITIAL_FORM_STATE
@@ -90,7 +92,7 @@ const FormTesting: React.FC = () => {
           Resultado da Avaliação
         </h2>
         <p className="text-4xl font-bold text-blue-600 mb-6">{resposta}%</p>
-        {resposta > 50 ? (
+        {resposta > THRESHOLD_PERCENTAGE ? (
           <p className="text-gray-600 mb-6">
             Nosso modelo identificou que é provável que você possua o TEA com
             base nas informações fornecidas.
