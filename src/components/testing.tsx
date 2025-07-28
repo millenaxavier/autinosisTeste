@@ -26,14 +26,14 @@ const FormTesting = () => {
 
     const [resposta, setResposta] = useState(null);
 
-    const handleInputChange = (name, value) => {
+    const handleInputChange = (name: string, value: string) => {
         setFormData(prevState => ({
             ...prevState,
             [name]: value,
         }));
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log(JSON.stringify(formData));
     

@@ -1,8 +1,8 @@
 "use client";
 
+import { signInWithPopup, GoogleAuthProvider, sendSignInLinkToEmail } from "firebase/auth";
 import React, { useState } from "react";
 import { AUTH } from "../firebase/firebaseInit";
-import { signInWithPopup, GoogleAuthProvider, sendSignInLinkToEmail } from "firebase/auth";
 
 const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
   const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(AUTH, provider);
       if (onLoginSuccess) onLoginSuccess();
-    } catch (err: any) {
+    } catch {
       setError("Erro ao fazer login com Google");
     } finally {
       setLoading(false);
@@ -30,12 +30,12 @@ const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
     setLoading(true);
     try {
       const actionCodeSettings = {
-        url: window.location.origin + '/test',
+        url: `${window.location.origin}/test`,
         handleCodeInApp: true,
       };
       await sendSignInLinkToEmail(AUTH, email, actionCodeSettings);
       setEmailSent(true);
-    } catch (err: any) {
+    } catch {
       setError("Erro ao enviar email de login");
     } finally {
       setLoading(false);

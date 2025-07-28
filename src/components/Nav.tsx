@@ -1,13 +1,13 @@
 "use client";
 
+import { signOut } from "firebase/auth";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
-import { signOut } from "firebase/auth";
-import { AUTH } from "@/firebase/firebaseInit";
 import IniciarTriagemButton from "@/components/IniciarTriagemButton";
+import { AUTH } from "@/firebase/firebaseInit";
 
 const NavBar = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
