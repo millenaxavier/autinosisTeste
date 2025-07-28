@@ -1,8 +1,5 @@
 "use client";
-<<<<<<< HEAD
-=======
 
->>>>>>> 54ae2149169cbb02de27701659f5bbfb224497b3
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
