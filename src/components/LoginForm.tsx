@@ -11,8 +11,12 @@ const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
   const [emailSent, setEmailSent] = useState(false);
 
   const handleGoogleLogin = async () => {
+    console.log('Attempting Google login...');
+    console.log('AUTH object:', AUTH);
+    
     if (!AUTH) {
-      setError("Firebase não está configurado");
+      console.error('Firebase Auth is not initialized');
+      setError("Firebase não está configurado. Verifique as variáveis de ambiente.");
       return;
     }
 
@@ -20,10 +24,13 @@ const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
     setLoading(true);
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(AUTH, provider);
+      console.log('Google provider created, attempting sign in...');
+      const result = await signInWithPopup(AUTH, provider);
+      console.log('Login successful:', result.user.email);
       if (onLoginSuccess) onLoginSuccess();
-    } catch {
-      setError("Erro ao fazer login com Google");
+    } catch (error: any) {
+      console.error('Login error:', error);
+      setError(`Erro ao fazer login com Google: ${error.message || 'Erro desconhecido'}`);
     } finally {
       setLoading(false);
     }
@@ -40,13 +47,14 @@ const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
     setLoading(true);
     try {
       const actionCodeSettings = {
-        url: `${window.location.origin}/test`,
+        url: `${window.location.origin}/`, // Corrigido para redirecionar para a home
         handleCodeInApp: true,
       };
       await sendSignInLinkToEmail(AUTH, email, actionCodeSettings);
+      window.localStorage.setItem("emailForSignIn", email);
       setEmailSent(true);
-    } catch {
-      setError("Erro ao enviar email de login");
+    } catch (error: any) {
+      setError(`Erro ao enviar email de login: ${error.message || 'Erro desconhecido'}`);
     } finally {
       setLoading(false);
     }

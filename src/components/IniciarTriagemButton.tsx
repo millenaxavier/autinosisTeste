@@ -85,7 +85,7 @@ const IniciarTriagemButton = ({ variant = 'hero', className = '' }: IniciarTriag
       </motion.button>
       
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 left-0 top-0 w-screen h-screen z-50 flex items-center justify-center bg-black bg-opacity-50">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}

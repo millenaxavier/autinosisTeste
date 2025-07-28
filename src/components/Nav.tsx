@@ -8,10 +8,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import IniciarTriagemButton from "@/components/IniciarTriagemButton";
 import { AUTH } from "@/firebase/firebaseInit";
+import { useAuth } from "./AuthProvider";
 
 const NavBar = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { user } = useAuth();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -28,6 +30,17 @@ const NavBar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      if (AUTH) {
+        await signOut(AUTH);
+        console.log('Logout successful');
+      }
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
+
   // Dropdown animation variants
   const dropdownVariants = {
     hidden: { opacity: 0, y: -10 },
@@ -35,7 +48,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="w-full py-4 px-6 md:px-12 lg:px-24 flex justify-between items-center bg-gray-100">
+    <nav className="z-20 w-full py-4 px-6 md:px-12 lg:px-24 flex justify-between items-center bg-gray-100">
       {/* Brand Logo & Name */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -75,6 +88,22 @@ const NavBar = () => {
           </a>
         </Link>
         <IniciarTriagemButton variant="nav" />
+        
+        {/* User info and logout for desktop */}
+        {user ? (
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-gray-600">
+              Olá, {user.email?.split('@')[0] || 'Usuário'}
+            </span>
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 bg-gradient-to-r from-orange-500 to-pink-600 
+              text-white rounded-lg transition hover:bg-opacity-90 text-sm"
+            >
+              Sair
+            </button>
+          </div>
+        ) : null}
       </motion.div>
 
       {/* Mobile Navigation */}
@@ -100,12 +129,12 @@ const NavBar = () => {
               variants={dropdownVariants}
               className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 p-4"
             >
-              <Link href="/profile" legacyBehavior>
+              <Link href="/" legacyBehavior>
                 <a
                   onClick={() => setToggleDropdown(false)}
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded transition"
                 >
-                  My Profile
+                  Home
                 </a>
               </Link>
               <Link href="/test" legacyBehavior>
@@ -113,22 +142,31 @@ const NavBar = () => {
                   onClick={() => setToggleDropdown(false)}
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded transition"
                 >
-                  Take a Test
+                  Fazer Teste
                 </a>
               </Link>
-              <button
-                type="button"
-                onClick={async () => {
-                  setToggleDropdown(false);
-                  if (AUTH) {
-                    await signOut(AUTH);
-                  }
-                }}
-                className="mt-2 w-full text-left px-4 py-2 bg-gradient-to-r 
-                from-orange-500 to-pink-600 text-white rounded transition hover:bg-opacity-90"
-              >
-                Sign Out
-              </button>
+              
+              {/* User info and logout for mobile */}
+              {user ? (
+                <>
+                  <div className="border-t border-gray-200 my-2 pt-2">
+                    <div className="px-4 py-2 text-sm text-gray-600">
+                      Olá, {user.email?.split('@')[0] || 'Usuário'}
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      setToggleDropdown(false);
+                      await handleLogout();
+                    }}
+                    className="mt-2 w-full text-left px-4 py-2 bg-gradient-to-r 
+                    from-orange-500 to-pink-600 text-white rounded transition hover:bg-opacity-90"
+                  >
+                    Sair
+                  </button>
+                </>
+              ) : null}
             </motion.div>
           )}
         </AnimatePresence>
