@@ -1,14 +1,10 @@
 "use client";
-<<<<<<< HEAD
-=======
-
->>>>>>> 54ae2149169cbb02de27701659f5bbfb224497b3
+import { isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
-import { AUTH } from "../../firebase/firebaseInit";
-import FirebaseStatus from "../../components/FirebaseStatus";
 import LoginForm from "../../components/LoginForm";
+import FirebaseStatus from "../../components/FirebaseStatus";
+import { AUTH } from "../../firebase/firebaseInit";
 
 export default function LoginPage() {
   const router = useRouter();

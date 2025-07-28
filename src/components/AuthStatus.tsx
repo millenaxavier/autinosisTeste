@@ -8,17 +8,6 @@ import { useAuth } from "./AuthProvider";
 const AuthStatus = () => {
   const { user, loading } = useAuth();
 
-  const handleLogout = async () => {
-    try {
-      if (AUTH) {
-        await signOut(AUTH);
-        console.log('Logout successful');
-      }
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
-  };
-
   if (loading) {
     return (
       <div className="p-4 bg-blue-50 rounded-lg">
