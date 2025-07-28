@@ -1,9 +1,10 @@
+"use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
-import { AUTH } from "../../components/../firebase/firebaseInit";
-import LoginForm from "../../components/LoginForm";
+import { AUTH } from "../../firebase/firebaseInit";
 import FirebaseStatus from "../../components/FirebaseStatus";
+import LoginForm from "../../components/LoginForm";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function LoginPage() {
       if (!email) {
         email = window.prompt("Por favor, digite seu e-mail para login:");
       }
-      console.log("Email usado para login:", email);
+      console.log(`Email usado para login: ${email}`);
       if (email) {
         signInWithEmailLink(AUTH, email, window.location.href)
           .then(() => {
@@ -25,12 +26,12 @@ export default function LoginPage() {
             router.push("/"); // Redireciona para a home após login
           })
           .catch((error) => {
-            alert("Erro ao autenticar: " + error.message);
+            alert(`Erro ao autenticar: ${error.message}`);
             console.error("Erro detalhado do Firebase:", error);
           });
       }
     }
-  }, []);
+  }, [router]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
