@@ -1,9 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { signInWithPopup, GoogleAuthProvider, sendSignInLinkToEmail } from "firebase/auth";
 import React, { useState } from "react";
 import { AUTH } from "../firebase/firebaseInit";
-import { useRouter } from "next/navigation";
 
 const LoginForm = ({ onLoginSuccess }: { onLoginSuccess?: () => void }) => {
   const router = useRouter();

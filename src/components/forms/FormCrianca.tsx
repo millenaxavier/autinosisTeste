@@ -2,9 +2,9 @@
 "use client";
 
 import React, { useState } from "react";
+import removeAccents from "remove-accents";
 import FormInput from "@/components/forms/GeneralForm"
 import type { FormCriancaData } from "@/components/forms/types";
-import removeAccents from "remove-accents";
 
 const INITIAL_FORM_STATE: FormCriancaData = {
   Ethnicity: "",

@@ -4,12 +4,12 @@ import { signOut } from "firebase/auth";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect, useRef } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import IniciarTriagemButton from "@/components/IniciarTriagemButton";
 import { AUTH } from "@/firebase/firebaseInit";
 import { useAuth } from "./AuthProvider";
-import { useRouter } from "next/navigation";
 
 const NavBar = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
