@@ -1,8 +1,6 @@
 "use client";
 
-import { signOut } from "firebase/auth";
 import React from "react";
-import { AUTH } from "../firebase/firebaseInit";
 import { useAuth } from "./AuthProvider";
 
 const AuthStatus = () => {

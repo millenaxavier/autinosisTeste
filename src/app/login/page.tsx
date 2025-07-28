@@ -1,9 +1,9 @@
 "use client";
 import { isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import LoginForm from "../../components/LoginForm";
+import { useEffect } from "react";
 import FirebaseStatus from "../../components/FirebaseStatus";
+import LoginForm from "../../components/LoginForm";
 import { AUTH } from "../../firebase/firebaseInit";
 
 export default function LoginPage() {
