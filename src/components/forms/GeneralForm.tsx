@@ -19,10 +19,7 @@ const FormInput: React.FC<FormInputProps> = ({
 
   return (
     <div className="mb-6">
-      <label
-        htmlFor={name}
-        className="block text-gray-700 font-semibold mb-2"
-      >
+      <label htmlFor={name} className="mb-2 block font-semibold text-gray-700">
         {label}
       </label>
       {type === "select" ? (
