@@ -19,12 +19,12 @@ const FormInput: React.FC<FormInputProps> = ({
 
   return (
     <div className="mb-6">
-      <label htmlFor={name} className="mb-2 block font-semibold text-gray-700">
+      <label htmlFor={String(name)} className="mb-2 block font-semibold text-gray-700">
         {label}
       </label>
       {type === "select" ? (
         <select
-          id={name}
+          id={String(name)}
           className={baseStyles}
           value={value}
           onChange={(e) => onChange(name, e.target.value)}
@@ -39,7 +39,7 @@ const FormInput: React.FC<FormInputProps> = ({
         </select>
       ) : (
         <input
-          id={name}
+          id={String(name)}
           className={baseStyles}
           type={type}
           placeholder={placeholder}
