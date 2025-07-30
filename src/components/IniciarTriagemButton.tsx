@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "@/components/AuthProvider";
 import LoginForm from "@/components/LoginForm";
+import { createPortal } from "react-dom";
 
 interface IniciarTriagemButtonProps {
   variant?: 'nav' | 'hero' | 'cta';
@@ -15,6 +16,11 @@ const IniciarTriagemButton = ({ variant = 'hero', className = '' }: IniciarTriag
   const router = useRouter();
   const { user, loading } = useAuth();
   const [showModal, setShowModal] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleClick = () => {
     if (loading) return;
@@ -84,8 +90,19 @@ const IniciarTriagemButton = ({ variant = 'hero', className = '' }: IniciarTriag
         {getButtonText()}
       </motion.button>
       
-      {showModal && (
-        <div className="fixed inset-0 left-0 top-0 w-screen h-screen z-50 flex items-center justify-center bg-black bg-opacity-50">
+      {showModal && mounted && createPortal(
+        <div 
+          className="fixed inset-0 flex items-center justify-center" 
+          style={{ 
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            width: '100vw',
+            height: '100vh',
+            top: 0,
+            left: 0,
+            pointerEvents: 'auto',
+            zIndex: 9999
+          }}
+        >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -106,7 +123,8 @@ const IniciarTriagemButton = ({ variant = 'hero', className = '' }: IniciarTriag
             </div>
             <LoginForm onLoginSuccess={handleLoginSuccess} />
           </motion.div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
