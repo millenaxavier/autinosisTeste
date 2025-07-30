@@ -98,90 +98,37 @@ const Home: FC = () => {
 
       <AnimatePresence>
         {isLoaded && (
-          <motion.main
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="min-h-screen overflow-x-hidden bg-gradient-to-b from-white to-blue-50"
-          >
+          <section className="min-h-screen overflow-x-hidden bg-gradient-to-b from-white to-blue-50">
             {/* Hero Section */}
             <section className="w-full flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 py-16 md:py-24 lg:py-32 relative">
               {/* Animated background elements */}
-              <motion.div
-                className="absolute top-20 left-10 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
-                animate={{
-                  x: [0, 30, 0],
-                  y: [0, 50, 0],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 8,
-                  ease: "easeInOut",
-                }}
-              />
+              <div className="absolute top-20 left-10 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
 
-              <motion.div
-                className="absolute bottom-20 right-10 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
-                animate={{
-                  x: [0, -40, 0],
-                  y: [0, 30, 0],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 10,
-                  ease: "easeInOut",
-                }}
-              />
+              <div className="absolute bottom-20 right-10 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
 
-              <motion.h1
-                custom={0}
-                initial="hidden"
-                animate="visible"
-                variants={fadeIn}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-900 mb-4"
-              >
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-900 mb-4">
                 Autinosis.
                 <br className="max-md:hidden" />
-                <motion.span
-                  custom={1}
-                  variants={fadeIn}
-                  className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700"
-                >
+                <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700">
                   Impulsionado por IA
-                </motion.span>
-              </motion.h1>
+                </span>
+              </h1>
 
-              <motion.p
-                custom={2}
-                initial="hidden"
-                animate="visible"
-                variants={fadeIn}
-                className="text-lg md:text-xl text-center text-gray-600 max-w-2xl mb-8"
-              >
+              <p className="text-lg md:text-xl text-center text-gray-600 max-w-2xl mb-8">
                 Revolucionando a triagem de autismo com inteligência artificial
                 de ponta. A detecção precoce leva a melhores resultados e
                 suporte personalizado.
-              </motion.p>
+              </p>
 
-              <motion.div
-                custom={3}
-                initial="hidden"
-                animate="visible"
-                variants={fadeIn}
-                className="flex flex-col sm:flex-row items-center gap-4"
-              >
+              <div className="flex flex-col sm:flex-row items-center gap-4">
                 <IniciarTriagemButton variant="hero" />
 
                 <Link href="/learn-more">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-8 py-4 border border-gray-300 rounded-full text-gray-700 font-medium hover:bg-gray-50 transition-all duration-300"
-                  >
+                  <button className="px-8 py-4 border border-gray-300 rounded-full text-gray-700 font-medium hover:bg-gray-50 transition-all duration-300">
                     Saiba Mais
-                  </motion.button>
+                  </button>
                 </Link>
-              </motion.div>
+              </div>
             </section>
 
             {/* Auth Status Section */}
@@ -455,7 +402,7 @@ const Home: FC = () => {
                 </div>
               </div>
             </footer>
-          </motion.main>
+          </section>
         )}
       </AnimatePresence>
     </>
