@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { getResultMessage } from './forms/resultMessages';
 
 const FormTesting = () => {
     const [formData, setFormData] = useState({
@@ -67,8 +68,15 @@ const FormTesting = () => {
             <h1 className='head_text orange_gradient'>Teste para adultos.</h1>
             { resposta !== null ? (
                 <div className='my-6'>
-                    <p className='desc'>O seu resultado foi:</p>
-                    <p className='head_text'>{resposta}%</p>
+                    {(() => {
+                        const resultMessage = getResultMessage(resposta, 'adult');
+                        return (
+                            <div>
+                                <p className='desc'>{resultMessage.title}</p>
+                                <p className='desc' style={{ marginTop: '1rem', lineHeight: '1.6' }}>{resultMessage.description}</p>
+                            </div>
+                        );
+                    })()}
                 </div>
             ) : (
 <form className='flex-col gap-4' onSubmit={handleSubmit}>

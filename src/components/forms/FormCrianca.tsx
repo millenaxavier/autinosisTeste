@@ -4,6 +4,7 @@
 import React, { useState } from "react";
 import FormInput from "@/components/forms/GeneralForm";
 import type { FormCriancaData } from "@/components/forms/types";
+import { getResultMessage } from "./resultMessages";
 
 // Definindo o tipo para as questões extras
 interface ExtraQuestion {
@@ -490,43 +491,43 @@ const FormCrianca: React.FC = () => {
   };
 
   if (resposta !== null) {
+    const resultMessage = getResultMessage(resposta, 'child');
+    
     return (
       <div className="my-10 rounded-lg bg-white p-6 text-center shadow-md">
         <h2 className="mb-4 text-2xl font-bold text-gray-800">
-          Resultado da Avaliação
+          {resultMessage.title}
         </h2>
-        <p className="mb-6 text-4xl font-bold text-blue-600">{resposta}%</p>
-        <p className="mb-6 text-gray-600">
-          Este resultado indica a probabilidade de presença de características
-          associadas ao TEA com base nas informações fornecidas.
+        <p className="mb-6 text-gray-600 leading-relaxed">
+          {resultMessage.description}
         </p>
-        {resposta > 0 && (
-          <div className="mb-6">
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Encontre profissionais especialistas em autismo
-              </label>
-              <input
-                type="text"
-                value={cidade}
-                onChange={e => setCidade(e.target.value)}
-                placeholder="Digite sua cidade"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            
-            {cidade && (
-              <a
-                href={getDoctoraliaLink(cidade)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors"
-              >
-                Buscar profissionais em {cidade}
-              </a>
-            )}
+        
+        <div className="mb-6">
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Encontre profissionais especialistas em autismo
+            </label>
+            <input
+              type="text"
+              value={cidade}
+              onChange={e => setCidade(e.target.value)}
+              placeholder="Digite sua cidade"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+            />
           </div>
-        )}
+          
+          {cidade && (
+            <a
+              href={getDoctoraliaLink(cidade)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors"
+            >
+              Buscar profissionais em {cidade}
+            </a>
+          )}
+        </div>
+        
         <button
           onClick={resetForm}
           className="px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors"
