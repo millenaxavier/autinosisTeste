@@ -4,7 +4,6 @@
 // pages/index.tsx
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import type { FC } from "react";
 import { useState, useEffect } from "react";
 import AuthStatus from "@/components/AuthStatus";
@@ -225,7 +224,7 @@ const Home: FC = () => {
                   {/* Globo/EPTV */}
                   <a href="https://redeglobo.globo.com/sp/eptv/eptv-na-escola-sul-de-minas/noticia/ia-e-acessibilidade-tecnologias-para-auxiliar-pessoas-com-deficiencia.ghtml" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition">
                     <div className="flex items-center mb-4">
-                      <img src="/assets/images/logo.svg" alt="Globo/EPTV" className="w-10 h-10 mr-3" />
+                      <Image src="/assets/images/logo.svg" alt="Globo/EPTV" width={40} height={40} className="mr-3" />
                       <span className="font-semibold text-lg text-gray-900">Globo / EPTV</span>
                     </div>
                     <p className="text-gray-700 mb-2 font-medium">IA e acessibilidade: tecnologias para auxiliar pessoas com deficiência</p>

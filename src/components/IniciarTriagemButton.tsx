@@ -1,11 +1,11 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import React, { useState, useEffect } from "react";
 import { useAuth } from "@/components/AuthProvider";
 import LoginForm from "@/components/LoginForm";
-import { createPortal } from "react-dom";
 
 interface IniciarTriagemButtonProps {
   variant?: 'nav' | 'hero' | 'cta';
