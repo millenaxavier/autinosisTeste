@@ -122,12 +122,6 @@ const Home: FC = () => {
 
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <IniciarTriagemButton variant="hero" />
-
-                <Link href="/learn-more">
-                  <button className="px-8 py-4 border border-gray-300 rounded-full text-gray-700 font-medium hover:bg-gray-50 transition-all duration-300">
-                    Saiba Mais
-                  </button>
-                </Link>
               </div>
             </section>
 
@@ -208,7 +202,7 @@ const Home: FC = () => {
               </motion.div>
             </section>
 
-            {/* Testimonials */}
+            {/* Mídia Section - Destaque na Mídia */}
             <section className="w-full py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-gray-50">
               <motion.div
                 initial="hidden"
@@ -216,74 +210,54 @@ const Home: FC = () => {
                 variants={staggerContainer}
                 className="max-w-6xl mx-auto"
               >
-                <motion.div
-                  custom={0}
-                  variants={fadeIn}
-                  className="text-center mb-16"
-                >
+                <div className="text-center mb-16">
                   <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">
-                    Histórias de Sucesso
+                    Autinosis na Mídia
                   </span>
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Confiado por Famílias e Profissionais
+                    Reconhecimento Nacional e Internacional
                   </h2>
                   <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Veja como o Autinosis está fazendo a diferença na detecção
-                    precoce do autismo
+                    O Autinosis já foi destaque em grandes veículos de comunicação, premiações e eventos científicos:
                   </p>
-                </motion.div>
-
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {[
-                    {
-                      quote:
-                        "A detecção precoce por meio do Autinosis nos ajudou a obter apoio para nosso filho 18 meses antes do que poderíamos ter conseguido de outra forma.",
-                      author: "Sarah M., Responsável",
-                      avatar: "/images/avatar1.jpg",
-                    },
-                    {
-                      quote:
-                        "Como pediatra, descobri que o Autinosis é uma ferramenta inestimável na minha prática. A triagem impulsionada por IA complementa os métodos tradicionais.",
-                      author: "Dr. James Wilson, Pediatra",
-                      avatar: "/images/avatar2.jpg",
-                    },
-                  ].map((testimonial, index) => (
-                    <motion.div
-                      key={index}
-                      custom={index + 1}
-                      variants={fadeIn}
-                      className="bg-white rounded-xl shadow-lg p-8 border border-gray-100"
-                    >
-                      <div className="flex mb-6">
-                        {[...Array(5)].map((_, i) => (
-                          <svg
-                            key={i}
-                            className="w-5 h-5 text-yellow-400"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                        ))}
-                      </div>
-                      <p className="text-gray-700 mb-6 italic">
-                        &quot;{testimonial.quote}&quot;
-                      </p>
-                      <div className="flex items-center">
-                        <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-                          <Image
-                            src={testimonial.avatar}
-                            alt={testimonial.author}
-                            width={48}
-                            height={48}
-                          />
-                        </div>
-                        <p className="font-medium text-gray-900">
-                          {testimonial.author}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
+                  {/* Globo/EPTV */}
+                  <a href="https://redeglobo.globo.com/sp/eptv/eptv-na-escola-sul-de-minas/noticia/ia-e-acessibilidade-tecnologias-para-auxiliar-pessoas-com-deficiencia.ghtml" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition">
+                    <div className="flex items-center mb-4">
+                      <img src="/assets/images/logo.svg" alt="Globo/EPTV" className="w-10 h-10 mr-3" />
+                      <span className="font-semibold text-lg text-gray-900">Globo / EPTV</span>
+                    </div>
+                    <p className="text-gray-700 mb-2 font-medium">IA e acessibilidade: tecnologias para auxiliar pessoas com deficiência</p>
+                    <p className="text-gray-500 text-sm">Reportagem sobre o impacto da IA na inclusão e menção ao Autinosis como ferramenta inovadora para triagem do autismo.</p>
+                  </a>
+                  {/* SBPC */}
+                  <a href="https://portal.sbpcnet.org.br/noticias/programa-que-ajuda-no-diagnostico-de-autismo-e-um-dos-ganhadores-do-premio-carolina-bori/" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition">
+                    <div className="flex items-center mb-4">
+                      <span className="w-10 h-10 mr-3 bg-blue-200 rounded-full flex items-center justify-center font-bold text-blue-700">SBPC</span>
+                      <span className="font-semibold text-lg text-gray-900">SBPC</span>
+                    </div>
+                    <p className="text-gray-700 mb-2 font-medium">Programa que ajuda no diagnóstico de autismo é um dos ganhadores do Prêmio Carolina Bori</p>
+                    <p className="text-gray-500 text-sm">Reconhecimento científico nacional pelo uso de IA no diagnóstico do autismo.</p>
+                  </a>
+                  {/* SICEA */}
+                  <a href="https://www.even3.com.br/anais/xiii-sicea-seminario-de-institutos-colegios-e-escolas-de-aplicacao-das-universidades-brasileiras-460542/954180-autinosis--uso-de-machine-learning-para-o-diagnostico-de-transtorno-do-espectro-autista/" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition">
+                    <div className="flex items-center mb-4">
+                      <span className="w-10 h-10 mr-3 bg-green-200 rounded-full flex items-center justify-center font-bold text-green-700">SICEA</span>
+                      <span className="font-semibold text-lg text-gray-900">XIII SICEA</span>
+                    </div>
+                    <p className="text-gray-700 mb-2 font-medium">Autinosis: uso de machine learning para o diagnóstico de TEA</p>
+                    <p className="text-gray-500 text-sm">Apresentação científica do projeto em evento acadêmico nacional.</p>
+                  </a>
+                  {/* Danilo Gentili */}
+                  <a href="https://www.youtube.com/watch?v=Q87Lm5BjEmM" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 flex flex-col hover:shadow-xl transition">
+                    <div className="flex items-center mb-4">
+                      <span className="w-10 h-10 mr-3 bg-black rounded-full flex items-center justify-center font-bold text-white">DN</span>
+                      <span className="font-semibold text-lg text-gray-900">The Noite com Danilo Gentili</span>
+                    </div>
+                    <p className="text-gray-700 mb-2 font-medium">Participação e menção ao Autinosis em rede nacional.</p>
+                    <p className="text-gray-500 text-sm">Reconhecimento em programa de grande audiência nacional.</p>
+                  </a>
                 </div>
               </motion.div>
             </section>
@@ -307,44 +281,6 @@ const Home: FC = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-semibold mb-4">Links</h3>
-                  <ul className="space-y-2">
-                    <li>
-                      <Link
-                        href="https://google.com"
-                        className="hover:text-blue-400 transition-colors"
-                      >
-                        Sobre Nós
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="https://google.com"
-                        className="hover:text-blue-400 transition-colors"
-                      >
-                        Nossa Tecnologia
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="https://google.com"
-                        className="hover:text-blue-400 transition-colors"
-                      >
-                        Pesquisa
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="https://google.com"
-                        className="hover:text-blue-400 transition-colors"
-                      >
-                        Perguntas Frequentes
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
                   <h3 className="text-lg font-semibold mb-4">Contato</h3>
                   <ul className="space-y-2">
                     <li>autinosis@gmail.com</li>
@@ -356,27 +292,6 @@ const Home: FC = () => {
                     </li>
                   </ul>
                 </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold mb-4">Siga-nos</h3>
-                  <div className="flex space-x-4">
-                    {["twitter", "facebook", "instagram", "linkedin"].map(
-                      (social) => (
-                        <a
-                          key={social}
-                          href={`https://${social}.com/autinosis`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-500 transition-colors"
-                        >
-                          <span className="sr-only">{social}</span>
-                          {/* Social icon would go here - simplified for the example */}
-                          <div className="w-5 h-5 bg-white/20 rounded-sm"></div>
-                        </a>
-                      )
-                    )}
-                  </div>
-                </div>
               </div>
 
               <div className="max-w-6xl mx-auto mt-12 pt-6 border-t border-gray-800 text-sm text-gray-500">
@@ -385,20 +300,6 @@ const Home: FC = () => {
                     © {new Date().getFullYear()} Autinosis. Todos os direitos
                     reservados.
                   </p>
-                  <div className="flex space-x-6 mt-4 md:mt-0">
-                    <Link
-                      href="/privacy"
-                      className="hover:text-gray-300 transition-colors"
-                    >
-                      Política de Privacidade
-                    </Link>
-                    <Link
-                      href="/terms"
-                      className="hover:text-gray-300 transition-colors"
-                    >
-                      Termos de Serviço
-                    </Link>
-                  </div>
                 </div>
               </div>
             </footer>
